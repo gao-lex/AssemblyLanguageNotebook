@@ -32,7 +32,11 @@ s:  mov al,[bx+si]
     loop s
 
     add bx,16
+    pop cx
+    loop s0
 
+    mov ax,4c00h
+    int 21h
 
 codesg ends
 end start

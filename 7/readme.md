@@ -70,7 +70,7 @@ end start
 ## 6-用[bx+idata]的方式进行数组的处理
 
 ```asm
-assume cs:code,ds:datasg
+assume cs:codesg,ds:datasg
 datasg segment
     db 'Basic'
     db 'iNfOrMaTion'
@@ -86,6 +86,7 @@ s:  mov al,[bx]     ;等于mov al,0[bx]
     mov [bx],al
     mov al,[5+bx]
     or al,00100000b
+    
     mov [5+bx],al   ;等于mov al,5[bx]
     inc bx
     loop s
@@ -101,7 +102,7 @@ end start
 assume cs:codesg,ds:datasg
 datasg segment
     db 'welcome to masm!'
-    ab `................`
+    db '................'
 datasg ends
 codesg segment
 start:
@@ -126,8 +127,6 @@ end start
 
 `[bx+si]`表示一个内存单元，它的偏移地址为`(bx)+(si)`
 `mov ax,[bx+si]`==`mov ax,[bx][si]`
-
-**本节最后一行错误**
 
 ## 9-[bx+si+idata]和[bx+di+idata]
 
