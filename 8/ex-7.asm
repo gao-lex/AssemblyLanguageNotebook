@@ -34,8 +34,7 @@ start:
     ;cx循环次数
     mov cx,21
     ;循环内容
-    s:
-    ;年
+s:
     ;将年从data 到 table 分为高16位和低16位
     mov ax,[bx]
     mov es:[si],ax

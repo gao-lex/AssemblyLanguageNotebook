@@ -1,3 +1,6 @@
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # 数据处理的两个基本问题
 
 1. 处理的数据在什么地方
@@ -85,3 +88,5 @@ db 3 dup (0)            ;000
 db 3 dup (0,1,2)        ;012012012
 db 3 dup ('abc','ABC')  ;abcABCabcABCabcABC
 ```
+## 实验７　寻址方式在结构化数据访问中的应用
+![](./image/ex-7.gif)

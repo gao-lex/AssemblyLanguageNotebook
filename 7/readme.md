@@ -1,3 +1,6 @@
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # 更灵活的定位内存地址的方法
 
 ## 1-and和or指令
