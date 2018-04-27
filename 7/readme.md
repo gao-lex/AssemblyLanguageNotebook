@@ -1,6 +1,20 @@
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
+<!-- code_chunk_output -->
+
+* [更灵活的定位内存地址的方法](#更灵活的定位内存地址的方法)
+	* [1-and和or指令](#1-and和or指令)
+	* [3-以字符形式给出的数据](#3-以字符形式给出的数据)
+	* [4-大小写转换的问题](#4-大小写转换的问题)
+	* [5-[bx+idata]](#5-bxidata)
+	* [6-用[bx+idata]的方式进行数组的处理](#6-用bxidata的方式进行数组的处理)
+	* [7-SI和DI](#7-si和di)
+	* [8-[bx+si]和[bx+di]](#8-bxsi和bxdi)
+	* [9-[bx+si+idata]和[bx+di+idata]](#9-bxsiidata和bxdiidata)
+
+<!-- /code_chunk_output -->
+
 # 更灵活的定位内存地址的方法
 
 ## 1-and和or指令
