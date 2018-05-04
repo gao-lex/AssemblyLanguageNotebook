@@ -100,7 +100,7 @@ end start
 
 **CPU在执行jmp指令的时候并不需要目的地址**。
 
-![](./image/CPU执行指令过程.svg)
+![](./image/CPU执行指令过程.png)
 
 ## 4-转移的目的地址在指令中的jmp指令
 
