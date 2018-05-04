@@ -1,0 +1,19 @@
+digraph G{
+    a[label="从cs:ip内存单元读取指令
+    读取的指令进入指令缓冲器",shape="box"];
+    b[label="(IP)=(IP)+所读指令的长度
+    从而指向下一条指令",shape="box"];
+    c[label="执行指令",shape="box"];
+    a -> b;
+    b -> c;
+    c -> a;
+    d[label="(cs)=0bbdh,(ip)=0006h
+    cs:ip指向EB 03(jmp short s)",shape="box"];
+    e[label="读取指令码EB 03进入指令缓冲器",shape="box"];
+    f[label="(ip)=ip+2=0008h,cs:ip指向add ax,1",shape="box"]
+    g[label="cpu执行EB 03
+    (ip)=000b,cs:ip指向inc ax",shape="box"]
+    d -> e;
+    e -> f;
+    f -> g;
+}
