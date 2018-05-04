@@ -1,0 +1,9 @@
+digraph G{
+    rankdir = "TB"
+    a [label=" 子程序开始 ",shape="Mrecord",fontname="Microsoft Yahei"];
+    b [label=" 子程序使用的寄存器入栈 ",shape="box",fontname="Microsoft Yahei"];
+    c [label=" 子程序内容 ",shape="box",fontname="Microsoft Yahei"];
+    d [label=" 子程序使用的寄存器出栈 ",shape="box",fontname="Microsoft Yahei"];
+    e [label=" 返回(ret、retf) ",shape="Mrecord",fontname="Microsoft Yahei"];
+    a -> b -> c -> d -> e;
+}
