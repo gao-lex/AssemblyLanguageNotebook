@@ -21,15 +21,16 @@
 |:---:|:---|:---:|
 |`ret`|用栈中的数据修改`ip`的内容<br>近转移|`pop ip`|
 |`retf`|用栈中的数据修改`cs`和`ip`的内容<br>远转移|`pop ip`<br>`pop cs`|
-|`call`|1.将当前的`ip`或`cs`和`ip`压入栈中<br>2.转移<br>不能实现短转移<br>`call`指令实现转移的原理和`jmp`指令相同||
+|`call`|1.将当前的`ip`或`cs`和`ip`压入栈中<br>2.转移<br>不能实现短转移<br>`call`指令实现转移的原理和`jmp`指令相同|  |
 |`call 标号`|将当前的`ip`压栈，转到标号处执行指令|`push ip`<br>`jmp near ptr 标号`|
 |`call far ptr 标号`|段间转移<br>之前的`call`对应的机器码中是相对位移|`push cs`<br>`push ip`<br>`jmp far ptr 标号`|
-|`call 16位reg`||`push ip`<br>`jmp 16位reg`|
-|`call word ptr 内存单元地址`||`push ip`<br>`jmp word ptr 内存单元地址`|
+|`call 16位reg`|  |`push ip`<br>`jmp 16位reg`|
+|`call word ptr 内存单元地址`|  |`push ip`<br>`jmp word ptr 内存单元地址`|
 |`call dword ptr 内存单元地址`|内存单元开始处放着两个字<br>高地址是转移的目的段地址<br>低地址是转移的目的偏移地址|`push cs`<br>`push ip`<br>`jmp dword ptr 内存单元地址`|
 
 
 ## 检测点10-1
+
 ```asm
 ;补全程序，实现从内存1000:0000处开始执行指令
 assume cs:code
