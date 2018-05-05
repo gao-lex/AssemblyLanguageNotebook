@@ -243,6 +243,42 @@ end start
 
 ### 显示字符串
 
+名称：`show_str`
+
+功能：在指定的位置，用指定的颜色，显示一个以0结束的字符串
+
+参数：`dh`=行号(0~24),`dl`=列号(0~79),`cl`=颜色,`ds:si`指向字符串的首地址
+
+返回：无
+
+应用举例：在屏幕的8行3列，用绿色显示`data`段中的字符串
+
+```asm
+assume cs:code
+data segment
+    db 'Welcome to masm!',0
+data ends
+
+code segment
+start:
+    mov dh,8
+    mov dl,3
+    mov cl,2
+    mov ax,data
+    mov ds,ax
+    mov si,0
+    call show_str
+
+    mov ax,4c00h
+    int 21h
+show_str:
+
+
+code ends
+end start
+```
+
+
 ### 解决除法溢出的问题
 
 ### 数值显示
