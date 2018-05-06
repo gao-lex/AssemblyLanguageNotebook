@@ -243,6 +243,7 @@ end start
 
 ### 显示字符串
 
+
 名称：`show_str`
 
 功能：在指定的位置，用指定的颜色，显示一个以0结束的字符串
@@ -253,33 +254,29 @@ end start
 
 应用举例：在屏幕的8行3列，用绿色显示`data`段中的字符串
 
-```asm
-assume cs:code
-data segment
-    db 'Welcome to masm!',0
-data ends
 
-code segment
-start:
-    mov dh,8
-    mov dl,3
-    mov cl,2
-    mov ax,data
-    mov ds,ax
-    mov si,0
-    call show_str
+[ex-10-1.asm](./ex-10-1.asm)
 
-    mov ax,4c00h
-    int 21h
-show_str:
-
-
-code ends
-end start
-```
-
+![](./image/ex-10-1.png)
 
 ### 解决除法溢出的问题
+
+div指令做除法可能产生除法溢出。由于有这样的问题。我们用子程序divdw来进行不会溢出的除法。
+
+被除数为dword型，除数为word型，结果为dword型。
+
+参数：(ax)=dword的低16位；(dx)=dowrd型数据的高16位；(cx)=除数
+
+返回：(dx)=结果的高16位，(ax)=结果的低16位；(cx)=余数
+
+应用举例：计算100 0000/10(F4240H/0AH)
+
+
+
+
+[](./ex-10-2.asm)
+
+![](./image/ex-10-2.png)
 
 ### 数值显示
 
