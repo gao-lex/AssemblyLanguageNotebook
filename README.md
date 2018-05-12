@@ -1,5 +1,19 @@
 # 王爽汇编语言读书笔记及课后练习
 
+---
+
+usage:
+* linux:
+    * ubuntu:
+        * `sudo apt install dosemu`
+        * `stty cols 80 rows 25`
+        * `dosemu -dump`
+* windows: dosbox
+
+![](./image/dosemu.png)
+
+---
+
 所有的检测点答案都包含在该章笔记之中。
 
 |章节笔记|
