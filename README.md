@@ -8,7 +8,7 @@ usage:
         * `sudo apt install dosemu`
         * `stty cols 80 rows 25`
         * `dosemu -dump`
-* windows: dosbox
+* windows: `dosbox`
 
 ![](./image/dosemu.png)
 
