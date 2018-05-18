@@ -1,0 +1,9 @@
+digraph G{
+    rankdir = "TB"
+    a [label=" 从中断信息中取得中断类型码 ",shape="box",fontname="Microsoft Yahei"];
+    b [label=" 标志寄存器的值入栈\n(中断过程中会改变标志寄存器的值) ",shape="box",fontname="Microsoft Yahei"];
+    c [label=" 设置标志寄存器的第8位tf和第9位if的值为0\n见后 ",shape="box",fontname="Microsoft Yahei"];
+    d [label=" cs的内容入栈\nip的内容入栈  ",shape="box",fontname="Microsoft Yahei"];
+    e [label=" 从中断向量表中读取中断处理程序的ip和cs ",shape="box",fontname="Microsoft Yahei"];
+    a -> b -> c -> d -> e;
+}

@@ -1,0 +1,9 @@
+digraph G{
+    rankdir = "TB"
+    a [label=" cpu收到中断信息 ",shape="box",fontname="Microsoft Yahei"];
+    b [label=" 转去执行中断信息的处理程序\ncs:ip指向其入口 ",shape="box",fontname="Microsoft Yahei"];
+    c [label=" cpu设计者必须在中断信息与其处理程序的入口地址建立联系 ",shape="box",fontname="Microsoft Yahei"];
+    d [label=" 中断类型码的作用就是用来定位中断处理程序 ",shape="box",fontname="Microsoft Yahei"];
+    e [label=" 如何根据8位的中断类型码定位中断处理程序的段地址和偏移地址\n中断向量表 ",shape="box",fontname="Microsoft Yahei"];
+    a -> b -> c -> d -> e;
+}

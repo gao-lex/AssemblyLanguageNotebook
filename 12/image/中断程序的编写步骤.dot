@@ -1,0 +1,8 @@
+digraph G{
+    rankdir = "TB"
+    a [label=" 保存用到的寄存器 ",shape="box",fontname="Microsoft Yahei"];
+    b [label=" 处理终端 ",shape="box",fontname="Microsoft Yahei"];
+    c [label=" 恢复用到的寄存器 ",shape="box",fontname="Microsoft Yahei"];
+    d [label=" 用iret指令返回  ",shape="box",fontname="Microsoft Yahei"];
+    a -> b -> c -> d ;
+}
