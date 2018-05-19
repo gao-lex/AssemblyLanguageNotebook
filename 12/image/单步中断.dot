@@ -1,0 +1,8 @@
+digraph G{
+    rankdir = "TB"
+    a [label=" 取得中断类型码1 ",shape="box",fontname="Microsoft Yahei"];
+    b [label=" 标志寄存器入栈，tf、ip设置为0\n防止tf=1陷入死循环 ",shape="box",fontname="Microsoft Yahei"];
+    c [label=" cs、ip入栈 ",shape="box",fontname="Microsoft Yahei"];
+    d [label=" (ip)=(1*4)\n(cs)=(1*4+2) ",shape="box",fontname="Microsoft Yahei"];
+    a -> b -> c -> d ;
+}
