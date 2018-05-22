@@ -50,6 +50,118 @@ out dx,al   ;往3f8h端口写一个字节
 
 ## CMOS RAM芯片
 
+**CMOS芯片**是一种**低功耗芯片**,其主要作用是**用来存放BIOS中的信息以及系统时间日期**.
+
+CMOS芯片的特征:
+
+1. 包含一个**实体钟**和一个**有128个存储单元的RAM存储器**(早期的电脑为64个字节)
+2. 该芯片**靠电池供电**.所以**关机后**其内部的实时钟仍可正常工作,RAM中的**信息不丢失**.
+3. 128个字节的RAM中,**内部时钟占用0~0dh单元保存时间信息**,其余**大部分单元用于保存系统配置信息**,供系统启动时BIOS程序读取.BIOS也提供了相关的程序,使我们可以在开机的时候配置CMOS RAM的系统信息.
+4. 该芯片**内部有两个端口**,**地址**为**70h**和**71h**.CPU通过这两个端口读写CMOS RAM
+5. **70h为地址端口**,存放要访问的CMOS RAM单元的地址;**71h为数据端口**,存放选定的CMOS RAM单元中读取的数据,或要写入其中的数据.可见,CPU对CMOS RAM的读写分两步进行,比如,*读CMOS RAM的2号单元*:
+    1. 将2送入端口70h
+    2. 从端口71h读出2号单元的地址
+
+## 检测点14.1
+
+1. 编程,读取CMOS RAM的2号单元的内容
+
+```asm
+asseme cs:code
+
+code segment
+start:
+    mov al,2
+    out 70h,al  ;往70h写2
+    in al,71h   ;从71h读取一个字节到al
+code ends
+end start
+```
+
+2. 编程,向CMOS RAM的2号单元写入0
+
+```asm
+assume cs:code
+code segment
+start:
+    mov al,2    
+    out al,70h  ;往70h写2
+    mov al,5
+    out al,71h  ;往2号单元地址写5
+code ends
+end start
+```
+
 ## shl和shr指令
 
+shl和shr是逻辑移位指令:
+
+1. `shl`是逻辑左移指令,格式为:`shl reg/mem,1/cl`功能为:
+    1. 将一个寄存器或内存单元中的数据向左移位
+    2. 将最后移出的一位写入`cf`中
+    3. 最低位用0补充
+    4. 移动位数大于1时,必须将移动位数放在`cl`中
+2. `shr`是逻辑右移指令,格式为:`shr reg/mem,1/cl`功能为:
+    1. 将一个寄存器或内存单元中的数据向右移位
+    2. 将最后移出的一位写入`cf`中
+    3. 最高位用0补充
+    4. 移动位数大于1时,必须将移动位数放在`cl`中
+
+## 检测点14.2
+
+用加法和移位指令计算(ax)=(ax)*10
+
+提示:`(ax)*10=(ax)*2+(ax)*8`
+
+```asm
+assume cs:code
+
+code segment
+start:
+    mov ax,10
+    shl ax,1
+    mov bx,ax
+    mov cl,2
+    shl ax,cl
+    add ax,bx
+code ends
+end start
+
+```
+
 ## CMOS RAM中存放的时间信息
+
+在CMOS RAM中,存放着当前的时间:年,月,日,时,分,秒.这6个信息的长度都为1字节,存放单元为:秒:0,分:2,时:4,日:7,年:9.(以BCD码存放)
+
+BCD码:数值26的BCD码是`0010 0110`.一个字节可以表示两个BCD码.
+
+编程:在屏幕中间显示当前月份:[month.asm](./month.asm)
+
+```asm
+assume cs:code
+
+code segment
+start:
+    mov al,8
+    out 70h,al
+    in al,71h   ;获得当前月份的BCD码
+
+    mov ah,al
+    mov cl,4
+    shr ah,cl   ;ah为月份的十位数BCD码
+    and al,00001111b;al为月份的个位数BCD码
+    
+    add ah,30h
+    add al,30h
+
+    mov bx,0b800h
+    mov es,bx
+    mov byte ptr es:[160*12+40*2],ah
+    mov byte ptr es:[160*12+40*2+2],al
+
+    mov ax,4c00h
+    int 21h
+
+code ends
+end start
+```
